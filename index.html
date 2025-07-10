@@ -87,3 +87,82 @@
       border: none;
       outline: none;
       font-size: 1rem;
+      font-family: 'Chillax', sans-serif;
+      background: transparent;
+    }
+
+    .input-container button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+
+    /* ✅ Texto de pie de página */
+    footer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      text-align: center;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ HEADER con logo ClanAI y nombre -->
+  <header>
+    <img src="llama-icon.svg" alt="ClanAI logo">
+    <h1>ClanAI</h1>
+  </header>
+
+  <!-- ✅ BURBUJA de bienvenida inspiradora -->
+  <div class="bubble">
+    ¡Bienvenida, alma exploradora! 🌟<br>
+    Aquí empieza un viaje sin correcciones, solo compañía, preguntas profundas y un espacio para volver a ti. 
+  </div>
+
+  <!-- ✅ BURBUJA de pregunta de nombre -->
+  <div class="bubble">
+    ¿Cómo deseas que te llame? ✨
+  </div>
+
+  <!-- ✅ INPUT para que el usuario escriba su nombre -->
+  <div class="input-container">
+    <input type="text" id="nombreUsuario" placeholder="Escribe tu nombre aquí..." />
+    <button onclick="enviarNombre()">🔥</button>
+  </div>
+
+  <!-- ✅ Pie de página -->
+  <footer>
+    ClanAI · Un espacio para volver a ti · 2025
+  </footer>
+
+  <!-- ✅ Script mínimo para mostrar el nombre en burbuja -->
+  <script>
+    function enviarNombre() {
+      const nombre = document.getElementById("nombreUsuario").value;
+      if (nombre.trim() === "") return;
+
+      // ✅ Crear burbuja del usuario
+      const burbujaUser = document.createElement('div');
+      burbujaUser.className = 'bubble bubble-user';
+      burbujaUser.textContent = nombre;
+
+      // ✅ Insertar después de la última burbuja antes del input
+      document.body.insertBefore(burbujaUser, document.querySelector('.input-container'));
+
+      // ✅ Limpiar input
+      document.getElementById("nombreUsuario").value = "";
+    }
+  </script>
+
+</body>
+</html>
+
+
+    .input-container input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 1rem;
