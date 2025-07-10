@@ -5,97 +5,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ClanAI - Tu espacio</title>
 
-  <!-- ✅ cbustamente Fuente Chillax (cálida) + Poppins (complementaria) -->
+  <!-- ✅ Fuente Chillax: cambia esta URL si tienes el archivo local -->
   <link href="https://api.fontshare.com/v2/css?f[]=chillax@400,600&display=swap" rel="stylesheet">
+
+  <!-- ✅ Fuente secundaria Poppins para detalles finos -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
+    /* 🎨 Paleta de colores ClanAI */
     :root {
-      --bg-gradient: linear-gradient(135deg, #EEE0C2, #B6D3C6);
-      --bubble-bg: #fdfaf5; /* Beige muy claro */
-      --bubble-border: #86C1AF; /* Verde suave */
-      --text-color: #4B3D2A;
-      --accent: #C8945B;
+      --fondo-gradiente: linear-gradient(135deg, #EEE0C2, #B6D3C6);
+      --color-primario: #C8945B;
+      --color-secundario: #86C1AF;
+      --color-texto: #4B3D2A;
+      --bubble-bot: #E3CEC0;
+      --bubble-user: #FFFFFF;
     }
 
     body {
       margin: 0;
-      background: var(--bg-gradient);
-      font-family: 'Chillax', sans-serif;
-      color: var(--text-color);
+      background: var(--fondo-gradiente);
+      font-family: 'Chillax', sans-serif; /* ✅ Usamos Chillax */
+      color: var(--color-texto);
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 2rem 1rem;
       min-height: 100vh;
-      position: relative;
     }
 
-    /* ✅ Marca de agua con logo ClanAI */
-    body::before {
-      content: "";
-      background: url('ClanAI_con_transparencia.png') center center no-repeat;
-      background-size: 300px;
-      opacity: 0.05;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    /* ✅ Contenedor principal */
-    .content {
-      position: relative;
-      z-index: 1;
-      max-width: 500px;
-      width: 100%;
+    /* ✅ LOGO y título principal ClanAI */
+    header {
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
       align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
     }
 
-    /* ✅ Bienvenida principal SIN burbuja */
-    .bienvenida {
-      font-size: 1.8rem;
-      text-align: center;
-      font-family: 'Poppins', sans-serif;
-      color: var(--text-color);
+    header img {
+      width: 40px; /* Ajusta el tamaño del icono ClanAI */
     }
 
-    /* ✅ Parte 'ClanAI' destacada */
-    .logo-text {
-      font-family: 'Chillax', sans-serif;
-      color: var(--accent);
-      font-weight: 600;
+    header h1 {
+      font-family: 'Poppins', sans-serif; /* Combinación de fuentes */
+      font-size: 2rem;
+      color: var(--color-primario);
+      margin: 0;
     }
 
-    /* ✅ Burbujas */
+    /* ✅ Burbuja de bienvenida principal */
     .bubble {
-      background: var(--bubble-bg);
-      border: 2px solid var(--bubble-border);
+      max-width: 400px;
+      background: var(--bubble-bot);
       border-radius: 1.5rem;
       padding: 1rem 1.5rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      width: 100%;
+      margin: 0.5rem 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
+    /* ✅ Burbuja del usuario (opcional para cuando el usuario responde) */
     .bubble-user {
+      background: var(--bubble-user);
       align-self: flex-end;
     }
 
-    /* ✅ Input */
+    /* ✅ Input estilo burbuja */
     .input-container {
       display: flex;
       align-items: center;
-      background: var(--bubble-bg);
-      border: 2px solid var(--bubble-border);
+      background: #fff;
       border-radius: 2rem;
       padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      max-width: 400px;
       width: 100%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .input-container input {
@@ -105,7 +89,6 @@
       font-size: 1rem;
       font-family: 'Chillax', sans-serif;
       background: transparent;
-      color: var(--text-color);
     }
 
     .input-container button {
@@ -113,9 +96,9 @@
       border: none;
       cursor: pointer;
       margin-left: 0.5rem;
-      font-size: 1.2rem;
     }
 
+    /* ✅ Texto de pie de página */
     footer {
       margin-top: 2rem;
       font-size: 0.85rem;
@@ -124,49 +107,52 @@
     }
   </style>
 </head>
+
 <body>
 
-  <!-- ✅ Todo el contenido se envuelve para quedar sobre la marca de agua -->
-  <div class="content">
+  <!-- ✅ HEADER con logo ClanAI y nombre -->
+  <header>
+    <img src="llama-icon.svg" alt="ClanAI logo">
+    <h1>ClanAI</h1>
+  </header>
 
-    <!-- ✅ Bienvenida sin burbuja -->
-    <div class="bienvenida">
-      Bienvenidos a <span class="logo-text">ClanAI</span> ✨
-    </div>
-
-    <!-- ✅ Pregunta dentro de burbuja -->
-    <div class="bubble">
-      ¿Cómo deseas que te llame? 🫶
-    </div>
-
-    <!-- ✅ Input para nombre -->
-    <div class="input-container">
-      <input type="text" id="nombreUsuario" placeholder="Escribe tu nombre aquí..." />
-      <button onclick="enviarNombre()">🔥</button>
-    </div>
-
+  <!-- ✅ BURBUJA de bienvenida inspiradora -->
+  <div class="bubble">
+    ¡Bienvenida, alma exploradora! 🌟<br>
+    Aquí empieza un viaje sin correcciones, solo compañía, preguntas profundas y un espacio para volver a ti. 
   </div>
 
+  <!-- ✅ BURBUJA de pregunta de nombre -->
+  <div class="bubble">
+    ¿Cómo deseas que te llame? ✨
+  </div>
+
+  <!-- ✅ INPUT para que el usuario escriba su nombre -->
+  <div class="input-container">
+    <input type="text" id="nombreUsuario" placeholder="Escribe tu nombre aquí..." />
+    <button onclick="enviarNombre()">🔥</button>
+  </div>
+
+  <!-- ✅ Pie de página -->
   <footer>
     ClanAI · Un espacio para volver a ti · 2025
   </footer>
 
-  <!-- ✅ Script para mostrar nombre -->
+  <!-- ✅ Script mínimo para mostrar el nombre en burbuja -->
   <script>
     function enviarNombre() {
       const nombre = document.getElementById("nombreUsuario").value;
       if (nombre.trim() === "") return;
 
-      // Crear burbuja del usuario
+      // ✅ Crear burbuja del usuario
       const burbujaUser = document.createElement('div');
       burbujaUser.className = 'bubble bubble-user';
       burbujaUser.textContent = nombre;
 
-      // Insertar después de la última burbuja antes del input
-      const content = document.querySelector('.content');
-      content.insertBefore(burbujaUser, document.querySelector('.input-container'));
+      // ✅ Insertar después de la última burbuja antes del input
+      document.body.insertBefore(burbujaUser, document.querySelector('.input-container'));
 
-      // Limpiar input
+      // ✅ Limpiar input
       document.getElementById("nombreUsuario").value = "";
     }
   </script>
