@@ -1,10 +1,3 @@
-<!-- Logo grande (marca de agua) visible
-Llamita y título nuevo: ClanAI te abraza y te da la bienvenida
-Burbujas del coach alineadas a la izquierda
-Burbujas del coachee (usuario) alineadas a la derecha
-Barra de entrada centrada
-Preguntas nuevas, cada una en su burbujita
-Bien comentado -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,9 +5,9 @@ Bien comentado -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ClanAI - Tu espacio</title>
 
-  <!-- ✅ Fuente principal Chillax -->
+  <!-- ✅ Fuente Chillax -->
   <link href="https://api.fontshare.com/v2/css?f[]=chillax@400,600&display=swap" rel="stylesheet">
-  <!-- ✅ Fuente secundaria Poppins -->
+  <!-- ✅ Fuente Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -22,10 +15,10 @@ Bien comentado -->
     :root {
       --fondo-principal: #FDFCF9;
       --color-primario: #C8945B;
-      --color-secundario: #86C1AF;
+      --color-secundario: #86C1AF; /* Verde suave */
       --color-texto: #4B3D2A;
-      --bubble-bot: #FFFFFF;
-      --bubble-user: #E3CEC0;
+      --bubble-bot: #FFFFFF; /* Fondo burbuja coach */
+      --bubble-user: #E3CEC0; /* Fondo burbuja user */
     }
 
     body {
@@ -41,12 +34,12 @@ Bien comentado -->
       position: relative;
     }
 
-    /* ✅ Logo marca de agua */
+    /* ✅ Marca de agua logo con + opacidad */
     body::before {
       content: "";
       background: url('ClanAI-logo.png') center center no-repeat;
       background-size: 400px;
-      opacity: 0.05;
+      opacity: 0.12; /* Más visible pero suave */
       position: absolute;
       top: 50%;
       left: 50%;
@@ -56,6 +49,7 @@ Bien comentado -->
       z-index: 0;
     }
 
+    /* ✅ Encabezado llamita + título */
     header {
       display: flex;
       align-items: center;
@@ -75,10 +69,11 @@ Bien comentado -->
       margin: 0;
     }
 
-    /* ✅ Burbujas base */
+    /* ✅ Burbuja base con borde verde */
     .bubble {
       max-width: 500px;
       background: var(--bubble-bot);
+      border: 2px solid var(--color-secundario); /* Borde verde */
       border-radius: 1.5rem;
       padding: 1rem 1.5rem;
       margin: 0.5rem 0;
@@ -87,19 +82,18 @@ Bien comentado -->
       z-index: 1;
     }
 
-    /* ✅ Burbuja coach (ClanAI) alineada a la izquierda */
+    /* ✅ Burbuja coach alineada izquierda */
     .bubble.bot {
       align-self: flex-start;
-      background: var(--bubble-bot);
     }
 
-    /* ✅ Burbuja usuario alineada a la derecha */
+    /* ✅ Burbuja usuario alineada derecha */
     .bubble.user {
       align-self: flex-end;
       background: var(--bubble-user);
     }
 
-    /* ✅ Input centrado */
+    /* ✅ Barra input centrada */
     .input-container {
       display: flex;
       align-items: center;
@@ -141,7 +135,7 @@ Bien comentado -->
 
 <body>
 
-  <!-- ✅ Encabezado: llamita + nuevo título -->
+  <!-- ✅ Encabezado con llamita -->
   <header>
     <img src="llamita.png" alt="Llamita ClanAI">
     <h1>ClanAI te abraza y te da la bienvenida</h1>
@@ -149,35 +143,33 @@ Bien comentado -->
 
   <!-- ✅ Burbuja bienvenida coach -->
   <div class="bubble bot">
-    Voy a hablarte como lo haría tu coach:
-    <br>
-    Desde un lugar profundo, amable y respetuoso…
-    <br>
-    Con una mirada que no viene a corregirte,
+    Voy a hablarte como lo haría tu coach:<br>
+    Desde un lugar profundo, amable y respetuoso…<br>
+    Con una mirada que no viene a corregirte,<br>
     sino a recordarte la fuerza que ya habita en ti.
   </div>
 
   <!-- ✅ Burbuja 2 -->
   <div class="bubble bot">
-    Aquí no encontrarás respuestas prefabricadas,
-    sino un espacio seguro para escucharte,
+    Aquí no encontrarás respuestas prefabricadas,<br>
+    sino un espacio seguro para escucharte,<br>
     sin prisas, sin máscaras… contigo, de verdad.
   </div>
 
   <!-- ✅ Burbuja 3 -->
   <div class="bubble bot">
-    Para iniciar este viaje juntos,
+    Para iniciar este viaje juntos,<br>
     ¿cómo quieres que te llame?
   </div>
 
   <!-- ✅ Burbuja 4 -->
   <div class="bubble bot">
-    ✨ Y para poder enviarte este y otros encuentros especiales,
-    ¿podrías dejarme tu correo?
+    ✨ Y para poder enviarte este y otros encuentros especiales,<br>
+    ¿podrías dejarme tu correo?<br>
     Prometo cuidarlo bien, como cuido este espacio contigo.
   </div>
 
-  <!-- ✅ Barra de entrada centrada -->
+  <!-- ✅ Barra de entrada -->
   <div class="input-container">
     <input type="text" id="nombreUsuario" placeholder="Escribe tu nombre aquí..." />
     <button onclick="enviarNombre()">🔥</button>
