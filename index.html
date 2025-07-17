@@ -1,129 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClanAI - Tu espacio</title>
-
-  <!-- ✅ Fuentes: Chillax (protagonista) + Poppins (complemento) -->
-  <link href="https://api.fontshare.com/v2/css?f[]=chillax@400,600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
   <style>
     :root {
-      --bg-color: #EEE0C2;
-      --text-color: #4B3D2A;
-      --accent: #C8945B;
-      --bubble-bg: #fdfaf5;
-      --bubble-border: #86C1AF;
+      --fondo-gradiente: linear-gradient(135deg, #d4e4dc, #f0e6d6);
+      --color-primario: #c8945b;
+      --color-secundario: #739f98;
+      --color-texto: #5c3b1e;
+      --borde: #c2a27e;
     }
 
     body {
       margin: 0;
-      background: var(--bg-color);
-      font-family: 'Chillax', sans-serif;
-      color: var(--text-color);
+      font-family: 'Poppins', sans-serif;
+      background: var(--fondo-gradiente);
+      color: var(--color-texto);
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      padding: 4rem 1rem;
+      flex-direction: column;
       min-height: 100vh;
-      position: relative;
-      overflow: hidden;
     }
 
-    /* ✅ Marca de agua: logo grande de fondo */
-    body::before {
-      content: "";
-      background: url('ClanAI-logo.png') center center no-repeat;
-      background-size: 400px; /* Ajusta tamaño aquí */
-      opacity: 0.05; /* Transparencia suave */
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    /* ✅ Contenido principal encima de la marca de agua */
-    .content {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
+    header {
+      padding: 2rem;
       text-align: center;
     }
 
-    /* ✅ Título ClanAI protagonista */
-    h1 {
-      font-size: 3rem;
-      font-family: 'Chillax', sans-serif;
-      color: var(--accent);
-      margin: 0 0 1rem 0;
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--color-primario);
     }
 
-    /* ✅ Texto introductorio */
-    .intro {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: var(--text-color);
-      margin-bottom: 3rem;
-    }
-
-    /* ✅ Burbuja lateral con llamita decorativa */
-    .bubble {
-      background: var(--bubble-bg);
-      border: 2px solid var(--bubble-border);
-      border-radius: 1.5rem;
-      padding: 1rem 1.5rem;
-      max-width: 300px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    .chat-container {
+      background: white;
+      border-radius: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 90%;
+      padding: 2rem;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 1rem;
     }
 
-    .bubble img {
-      width: 50px; /* Ajusta tamaño de la llamita aquí */
-      height: auto;
+    .chat-container label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .chat-container input[type="text"],
+    .chat-container input[type="email"] {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 1rem;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 1rem;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .boton-cta {
+      background-color: var(--color-secundario);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .intro {
+      max-width: 400px;
+      margin-top: 1rem;
+      padding: 0 1rem;
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
 
     footer {
-      margin-top: 4rem;
+      text-align: center;
+      padding: 1.5rem;
       font-size: 0.85rem;
-      color: #555;
+      color: #666;
     }
-
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
-  <!-- ✅ Contenido principal -->
-  <div class="content">
-    <!-- ✅ Título principal -->
+  <header>
     <h1>ClanAI</h1>
+  </header>
 
-    <!-- ✅ Texto introductorio sin burbuja -->
-    <div class="intro">
-      Este no es solo un sitio web. Es un espacio vivo, creado con cuidado y propósito para acompañarte a descubrir, expandir y transformar lo que ya habita en ti. Creemos que cada persona merece un lugar seguro donde explorar su mente, conocerse mejor y diseñar una versión de sí misma más consciente, libre y poderosa.
-      <br><br>
+  <div class="intro">
+    <p>
+      Este no es solo un sitio web. Es un espacio vivo, creado con cuidado y propósito para acompañarte a descubrir, expandir y transformar lo que ya habita en ti.
+    </p>
+    <p>
       Por eso ClanAI combina coaching transformacional, PNL, neurociencia emocional y herramientas de IA para guiarte, paso a paso, hacia lo que hoy sueñas ser.
-    </div>
-
-    <!-- ✅ Burbuja lateral izquierda con llamita -->
-    <div class="bubble">
-      <img src="llama.png" alt="ClanAI llama">
-      <span>ClanAI te acompaña 🌟</span>
-    </div>
+    </p>
   </div>
+
+  <section class="chat-container">
+    <form id="formClanAI">
+      <label for="nombreUsuario">Nombre o apodo</label>
+      <input type="text" name="nombreUsuario" id="nombreUsuario" placeholder="Escribe tu nombre..." required />
+
+      <label for="emailUsuario">Correo electrónico</label>
+      <input type="email" name="emailUsuario" id="emailUsuario" placeholder="tucorreo@ejemplo.com" required />
+
+      <label for="nivelSeleccionado">Elige tu nivel:</label>
+      <select name="nivelSeleccionado" id="nivelSeleccionado" required>
+        <option value="Explorador">🧡 Explorador</option>
+        <option value="Visionario">👁 Visionario</option>
+        <option value="Inmersivo">🧠 Inmersivo</option>
+      </select>
+
+      <button class="boton-cta" type="submit">🚀 Iniciar viaje</button>
+    </form>
+  </section>
 
   <footer>
     ClanAI · Un espacio para volver a ti · 2025
   </footer>
 
+  <script>
+    document.getElementById("formClanAI").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const nombre = document.getElementById("nombreUsuario").value;
+      const email = document.getElementById("emailUsuario").value;
+      const nivel = document.getElementById("nivelSeleccionado").value;
+      alert(`Hola ${nombre}, iniciarás tu viaje ClanAI en el nivel ${nivel}. Te escribiremos a ${email}.`);
+    });
+  </script>
 </body>
 </html>
 
