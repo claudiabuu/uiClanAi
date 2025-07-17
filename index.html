@@ -130,4 +130,76 @@ Bien comentado -->
     }
 
     footer {
-      m
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      text-align: center;
+      color: #555;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ Encabezado: llamita + nuevo título -->
+  <header>
+    <img src="llamita.png" alt="Llamita ClanAI">
+    <h1>ClanAI te abraza y te da la bienvenida</h1>
+  </header>
+
+  <!-- ✅ Burbuja bienvenida coach -->
+  <div class="bubble bot">
+    Voy a hablarte como lo haría tu coach:
+    <br>
+    Desde un lugar profundo, amable y respetuoso…
+    <br>
+    Con una mirada que no viene a corregirte,
+    sino a recordarte la fuerza que ya habita en ti.
+  </div>
+
+  <!-- ✅ Burbuja 2 -->
+  <div class="bubble bot">
+    Aquí no encontrarás respuestas prefabricadas,
+    sino un espacio seguro para escucharte,
+    sin prisas, sin máscaras… contigo, de verdad.
+  </div>
+
+  <!-- ✅ Burbuja 3 -->
+  <div class="bubble bot">
+    Para iniciar este viaje juntos,
+    ¿cómo quieres que te llame?
+  </div>
+
+  <!-- ✅ Burbuja 4 -->
+  <div class="bubble bot">
+    ✨ Y para poder enviarte este y otros encuentros especiales,
+    ¿podrías dejarme tu correo?
+    Prometo cuidarlo bien, como cuido este espacio contigo.
+  </div>
+
+  <!-- ✅ Barra de entrada centrada -->
+  <div class="input-container">
+    <input type="text" id="nombreUsuario" placeholder="Escribe tu nombre aquí..." />
+    <button onclick="enviarNombre()">🔥</button>
+  </div>
+
+  <footer>
+    ClanAI · Un espacio para volver a ti · 2025
+  </footer>
+
+  <script>
+    function enviarNombre() {
+      const nombre = document.getElementById("nombreUsuario").value;
+      if (nombre.trim() === "") return;
+
+      const burbujaUser = document.createElement('div');
+      burbujaUser.className = 'bubble user';
+      burbujaUser.textContent = nombre;
+
+      document.body.insertBefore(burbujaUser, document.querySelector('.input-container'));
+      document.getElementById("nombreUsuario").value = "";
+    }
+  </script>
+
+</body>
+</html>
