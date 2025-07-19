@@ -5,20 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ClanAI - Tu espacio</title>
 
-  <!-- ✅ Fuente Chillax -->
+  <!-- ✅ Fuentes ClanAI -->
   <link href="https://api.fontshare.com/v2/css?f[]=chillax@400,600&display=swap" rel="stylesheet">
-  <!-- ✅ Fuente Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* 🎨 PALETA ClanAI */
     :root {
       --fondo-principal: #FDFCF9;
       --color-primario: #C8945B;
-      --color-secundario: #86C1AF; /* Verde suave */
+      --color-secundario: #86C1AF;
       --color-texto: #4B3D2A;
-      --bubble-bot: #FFFFFF; /* Fondo burbuja coach */
-      --bubble-user: #E3CEC0; /* Fondo burbuja usuario */
+      --bubble-bot: #FFFFFF;
+      --bubble-user: #FFFFFFDD;
     }
 
     body {
@@ -34,12 +32,11 @@
       position: relative;
     }
 
-    /* ✅ Marca de agua logo ClanAI */
     body::before {
       content: "";
       background: url('ClanAI-logo.png') center center no-repeat;
       background-size: 400px;
-      opacity: 0.15; /* Un poco más visible */
+      opacity: 0.12;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -49,7 +46,6 @@
       z-index: 0;
     }
 
-    /* ✅ Encabezado llamita + título */
     header {
       display: flex;
       align-items: center;
@@ -69,11 +65,10 @@
       margin: 0;
     }
 
-    /* ✅ Burbuja base */
     .bubble {
       max-width: 500px;
       background: var(--bubble-bot);
-      border: 2px solid var(--color-secundario);
+      border: 1px solid var(--color-secundario);
       border-radius: 1.5rem;
       padding: 1rem 1.5rem;
       margin: 0.5rem 0;
@@ -82,19 +77,15 @@
       z-index: 1;
     }
 
-    /* ✅ Burbuja coach alineada izquierda */
     .bubble.bot {
       align-self: flex-start;
     }
 
-    /* ✅ Burbuja usuario alineada derecha */
     .bubble.user {
       align-self: flex-end;
       background: var(--bubble-user);
-      border: 2px solid rgba(134,193,175,0.3); /* Borde más suave */
     }
 
-    /* ✅ Barra input centrada */
     .input-container {
       display: flex;
       align-items: center;
@@ -125,7 +116,7 @@
     }
 
     .input-container button img {
-      width: 30px;
+      width: 24px;
     }
 
     footer {
@@ -140,13 +131,11 @@
 
 <body>
 
-  <!-- ✅ Encabezado llamita + título ClanAI -->
   <header>
     <img src="llamita.png" alt="Llamita ClanAI">
     <h1>ClanAI te abraza y te da la bienvenida</h1>
   </header>
 
-  <!-- ✅ Burbuja bienvenida -->
   <div class="bubble bot">
     Voy a hablarte como lo haría tu coach:<br>
     Desde un lugar profundo, amable y respetuoso…<br>
@@ -165,11 +154,11 @@
     ¿cómo quieres que te llame?
   </div>
 
-  <!-- ✅ Barra de entrada con input nombre + correo -->
+  <!-- ✅ Campos de entrada -->
   <div class="input-container">
     <input type="text" id="nombreUsuario" placeholder="Tu nombre aquí..." />
     <input type="text" id="emailUsuario" placeholder="Tu correo aquí..." style="display:none;" />
-    <button type="button" id="botonEnviar">
+    <button id="botonEnviar">
       <img src="llamita.png" alt="Enviar">
     </button>
   </div>
@@ -178,22 +167,23 @@
     ClanAI · Un espacio para volver a ti · 2025
   </footer>
 
-  <!-- ✅ Script del flujo conversacional -->
   <script>
-    const nombreInput = document.getElementById("nombreUsuario"); // Variable nombre
-    const correoInput = document.getElementById("emailUsuario");  // Variable correo
-    const botonEnviar = document.getElementById("botonEnviar");
     let paso = 1;
 
-    // Click en botón
-    botonEnviar.addEventListener("click", manejarFlujo);
-    // Enter en input
+    const nombreInput = document.getElementById("nombreUsuario");
+    const correoInput = document.getElementById("emailUsuario");
+    const botonEnviar = document.getElementById("botonEnviar");
+
+    // ✅ ENTER en ambos campos
     nombreInput.addEventListener("keypress", function(e) {
       if (e.key === "Enter") manejarFlujo();
     });
+
     correoInput.addEventListener("keypress", function(e) {
       if (e.key === "Enter") manejarFlujo();
     });
+
+    botonEnviar.addEventListener("click", manejarFlujo);
 
     function manejarFlujo() {
       if (paso === 1) {
@@ -236,3 +226,4 @@
 
 </body>
 </html>
+
