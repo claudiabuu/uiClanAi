@@ -13,10 +13,10 @@
     :root {
       --fondo-principal: #FDFCF9;
       --color-primario: #C8945B;
-      --color-secundario: #86C1AF;
+      --color-secundario: #86C1AF; /* Verde suave */
       --color-texto: #4B3D2A;
       --bubble-bot: #FFFFFF;
-      --bubble-user: #DFF5EB;
+      --bubble-user: #FFFFFFDD;
     }
 
     body {
@@ -32,6 +32,7 @@
       position: relative;
     }
 
+    /* ✅ Logo marca de agua */
     body::before {
       content: "";
       background: url('ClanAI-logo.png') center center no-repeat;
@@ -131,11 +132,13 @@
 
 <body>
 
+  <!-- ✅ Encabezado ClanAI -->
   <header>
     <img src="llamita.png" alt="Llamita ClanAI">
     <h1>ClanAI te abraza y te da la bienvenida</h1>
   </header>
 
+  <!-- ✅ Mensajes iniciales del coach -->
   <div class="bubble bot">
     Voy a hablarte como lo haría tu coach:<br>
     Desde un lugar profundo, amable y respetuoso…<br>
@@ -154,7 +157,7 @@
     ¿cómo quieres que te llame?
   </div>
 
-  <!-- ✅ Campos de entrada -->
+  <!-- ✅ Inputs: nombre y correo -->
   <div class="input-container">
     <input type="text" id="nombreUsuario" placeholder="Tu nombre aquí..." />
     <input type="text" id="emailUsuario" placeholder="Tu correo aquí..." style="display:none;" />
@@ -174,7 +177,6 @@
     const correoInput = document.getElementById("emailUsuario");
     const botonEnviar = document.getElementById("botonEnviar");
 
-    // ✅ ENTER en ambos campos
     nombreInput.addEventListener("keypress", function(e) {
       if (e.key === "Enter") manejarFlujo();
     });
@@ -187,31 +189,33 @@
 
     function manejarFlujo() {
       if (paso === 1) {
-  const nombre = nombreInput.value.trim();
-  if (nombre === "") return;
+        const nombre = nombreInput.value.trim();
+        if (nombre === "") return;
 
-  const burbujaUser = document.createElement('div');
-  burbujaUser.className = 'bubble user';
-  burbujaUser.textContent = nombre;
-  document.body.insertBefore(burbujaUser, document.querySelector('.input-container'));
+        const burbujaUser = document.createElement('div');
+        burbujaUser.className = 'bubble user';
+        burbujaUser.textContent = nombre;
+        document.body.insertBefore(burbujaUser, document.querySelector('.input-container'));
 
-  // ✅ Mueve el cambio de paso aquí
-  paso = 2;
+        paso = 2; // ✅ Se cambia de inmediato para evitar doble setTimeout
 
-  setTimeout(() => {
-    const burbujaBot = document.createElement('div');
-    burbujaBot.className = 'bubble bot';
-    burbujaBot.innerHTML = "✨ Y para poder enviarte este y otros encuentros especiales,<br>¿podrías dejarme tu correo?<br>Prometo cuidarlo bien, como cuido este espacio contigo.";
-    document.body.insertBefore(burbujaBot, document.querySelector('.input-container'));
+        setTimeout(() => {
+          const burbujaBot = document.createElement('div');
+          burbujaBot.className = 'bubble bot';
+          burbujaBot.innerHTML = "✨ Y para poder enviarte este y otros encuentros especiales,<br>¿podrías dejarme tu correo?<br>Prometo cuidarlo bien, como cuido este espacio contigo.";
+          document.body.insertBefore(burbujaBot, document.querySelector('.input-container'));
 
-    nombreInput.style.display = "none";
-    correoInput.style.display = "block";
-    correoInput.focus();
-  }, 1500);
-}
-      else if (paso === 2) {
+          nombreInput.style.display = "none";
+          correoInput.style.display = "block";
+          correoInput.focus();
+        }, 1500);
+
+      } else if (paso === 2) {
         const correo = correoInput.value.trim();
-        if (correo === "") return;
+        if (!validarCorreo(correo)) {
+          alert("Por favor ingresa un correo válido. 📧");
+          return;
+        }
 
         const burbujaUser = document.createElement('div');
         burbujaUser.className = 'bubble user';
@@ -223,11 +227,17 @@
         burbujaBot.innerHTML = "¡Gracias por confiar! Este espacio es tuyo. 🌱";
         document.body.insertBefore(burbujaBot, document.querySelector('.input-container'));
 
-        document.querySelector('.input-container').style.display = "none";
+        // ✅ No ocultamos la barra, se queda visible para seguir.
+        correoInput.value = "";
       }
+    }
+
+    function validarCorreo(correo) {
+      // Expresión regular básica para validar estructura de correo
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(correo);
     }
   </script>
 
 </body>
 </html>
-
