@@ -5,20 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ClanAI - Tu espacio</title>
 
-  <!-- ✅ Fuente Chillax -->
+  <!-- ✅ Fuentes -->
   <link href="https://api.fontshare.com/v2/css?f[]=chillax@400,600&display=swap" rel="stylesheet">
-  <!-- ✅ Fuente Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* 🎨 PALETA ClanAI */
     :root {
       --fondo-principal: #FDFCF9;
       --color-primario: #C8945B;
-      --color-secundario: #86C1AF; /* Verde suave */
+      --color-secundario: #86C1AF;
       --color-texto: #4B3D2A;
-      --bubble-bot: #FFFFFF; /* Fondo burbuja coach */
-      --bubble-user: #E3CEC0; /* Fondo burbuja usuario */
+      --bubble-bot: #FFFFFF;
+      --bubble-user: #E3CEC0;
     }
 
     body {
@@ -34,12 +32,11 @@
       position: relative;
     }
 
-    /* ✅ Marca de agua logo ClanAI */
     body::before {
       content: "";
       background: url('ClanAI-logo.png') center center no-repeat;
-      background-size: 400px;
-      opacity: 0.15; /* Un poco más visible */
+      background-size: 500px;
+      opacity: 0.1;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -49,7 +46,6 @@
       z-index: 0;
     }
 
-    /* ✅ Encabezado llamita + título */
     header {
       display: flex;
       align-items: center;
@@ -69,7 +65,6 @@
       margin: 0;
     }
 
-    /* ✅ Burbuja base */
     .bubble {
       max-width: 500px;
       background: var(--bubble-bot);
@@ -82,19 +77,16 @@
       z-index: 1;
     }
 
-    /* ✅ Burbuja coach alineada izquierda */
     .bubble.bot {
       align-self: flex-start;
     }
 
-    /* ✅ Burbuja usuario alineada derecha */
     .bubble.user {
       align-self: flex-end;
       background: var(--bubble-user);
-      border: 2px solid rgba(134,193,175,0.3); /* Borde más suave */
+      border-color: #ddd; /* borde suave user */
     }
 
-    /* ✅ Barra input centrada */
     .input-container {
       display: flex;
       align-items: center;
@@ -125,7 +117,7 @@
     }
 
     .input-container button img {
-      width: 30px;
+      width: 24px;
     }
 
     footer {
@@ -140,13 +132,13 @@
 
 <body>
 
-  <!-- ✅ Encabezado llamita + título ClanAI -->
+  <!-- ✅ Header llamita + título -->
   <header>
     <img src="llamita.png" alt="Llamita ClanAI">
     <h1>ClanAI te abraza y te da la bienvenida</h1>
   </header>
 
-  <!-- ✅ Burbuja bienvenida -->
+  <!-- ✅ Burbujas intro -->
   <div class="bubble bot">
     Voy a hablarte como lo haría tu coach:<br>
     Desde un lugar profundo, amable y respetuoso…<br>
@@ -165,11 +157,13 @@
     ¿cómo quieres que te llame?
   </div>
 
-  <!-- ✅ Barra de entrada con input nombre + correo -->
+  <!-- ✅ Respuesta dinámica irá aquí -->
+  <div id="burbujas-dinamicas"></div>
+
+  <!-- ✅ Input nombre -->
   <div class="input-container">
     <input type="text" id="nombreUsuario" placeholder="Tu nombre aquí..." />
-    <input type="text" id="emailUsuario" placeholder="Tu correo aquí..." style="display:none;" />
-    <button type="button" id="botonEnviar">
+    <button onclick="enviarNombre()">
       <img src="llamita.png" alt="Enviar">
     </button>
   </div>
@@ -178,59 +172,33 @@
     ClanAI · Un espacio para volver a ti · 2025
   </footer>
 
-  <!-- ✅ Script del flujo conversacional -->
   <script>
-    const nombreInput = document.getElementById("nombreUsuario"); // Variable nombre
-    const correoInput = document.getElementById("emailUsuario");  // Variable correo
-    const botonEnviar = document.getElementById("botonEnviar");
-    let paso = 1;
-
-    // Click en botón
-    botonEnviar.addEventListener("click", manejarFlujo);
-    // Enter en input
-    nombreInput.addEventListener("keypress", function(e) {
-      if (e.key === "Enter") manejarFlujo();
-    });
-    correoInput.addEventListener("keypress", function(e) {
-      if (e.key === "Enter") manejarFlujo();
-    });
-
-    function manejarFlujo() {
-      if (paso === 1) {
-        const nombre = nombreInput.value.trim();
-        if (nombre === "") return;
-
-        const burbujaUser = document.createElement('div');
-        burbujaUser.className = 'bubble user';
-        burbujaUser.textContent = nombre;
-        document.body.insertBefore(burbujaUser, document.querySelector('.input-container'));
-
-        const burbujaBot = document.createElement('div');
-        burbujaBot.className = 'bubble bot';
-        burbujaBot.innerHTML = "✨ Y para poder enviarte este y otros encuentros especiales,<br>¿podrías dejarme tu correo?<br>Prometo cuidarlo bien, como cuido este espacio contigo.";
-        document.body.insertBefore(burbujaBot, document.querySelector('.input-container'));
-
-        nombreInput.style.display = "none";
-        correoInput.style.display = "block";
-        correoInput.focus();
-        paso = 2;
-
-      } else if (paso === 2) {
-        const correo = correoInput.value.trim();
-        if (correo === "") return;
-
-        const burbujaUser = document.createElement('div');
-        burbujaUser.className = 'bubble user';
-        burbujaUser.textContent = correo;
-        document.body.insertBefore(burbujaUser, document.querySelector('.input-container'));
-
-        const burbujaBot = document.createElement('div');
-        burbujaBot.className = 'bubble bot';
-        burbujaBot.innerHTML = "¡Gracias por confiar! Este espacio es tuyo. 🌱";
-        document.body.insertBefore(burbujaBot, document.querySelector('.input-container'));
-
-        document.querySelector('.input-container').style.display = "none";
+    const inputNombre = document.getElementById("nombreUsuario");
+    inputNombre.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        enviarNombre();
       }
+    });
+
+    function enviarNombre() {
+      const nombre = inputNombre.value.trim();
+      if (nombre === "") return;
+
+      // ✅ Burbuja user
+      const burbujaUser = document.createElement('div');
+      burbujaUser.className = 'bubble user';
+      burbujaUser.textContent = nombre;
+      document.getElementById("burbujas-dinamicas").appendChild(burbujaUser);
+
+      // ✅ Burbuja siguiente pregunta
+      const burbujaCorreo = document.createElement('div');
+      burbujaCorreo.className = 'bubble bot';
+      burbujaCorreo.innerHTML = '✨ Y para poder enviarte este y otros encuentros especiales,<br>¿podrías dejarme tu correo?<br>Prometo cuidarlo bien, como cuido este espacio contigo.';
+      document.getElementById("burbujas-dinamicas").appendChild(burbujaCorreo);
+
+      // ✅ Limpiar input
+      inputNombre.value = "";
+      inputNombre.placeholder = "Tu correo aquí...";
     }
   </script>
 
