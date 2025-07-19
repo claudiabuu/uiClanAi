@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ClanAI - Tu espacio</title>
 
+  <!-- ✅ Fuente Chillax para títulos cálidos -->
+  <link href="https://api.fontshare.com/v2/css?f[]=chillax@400,600&display=swap" rel="stylesheet">
+  <!-- ✅ Fuente Poppins para textos limpios -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -19,8 +22,8 @@
 
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
       background: var(--fondo-principal);
+      font-family: 'Poppins', sans-serif; /* Texto base con Poppins */
       color: var(--color-texto);
       display: flex;
       flex-direction: column;
@@ -30,14 +33,38 @@
       position: relative;
     }
 
+    /* ✅ Logo ClanAI como marca de agua */
+    body::before {
+      content: "";
+      background: url('ClanAI-logo.png') center center no-repeat;
+      background-size: 400px;
+      opacity: 0.1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
     header {
-      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       margin-bottom: 2rem;
+      z-index: 1;
+    }
+
+    header img {
+      width: 60px;
     }
 
     header h1 {
+      font-family: 'Chillax', sans-serif; /* Título con Chillax */
       font-size: 2rem;
       color: var(--color-primario);
+      margin: 0;
     }
 
     .bubble {
@@ -48,37 +75,50 @@
       padding: 1rem 1.5rem;
       margin: 0.5rem 0;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-
-    .bot { align-self: flex-start; }
-    .user { align-self: flex-end; background: var(--bubble-user); }
-
-    .input-container {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      max-width: 500px;
-      width: 100%;
+      position: relative;
       z-index: 1;
     }
 
-    .input-container input, select {
-      width: 100%;
-      padding: 0.8rem;
-      border-radius: 1rem;
-      border: 1px solid #ccc;
-      font-size: 1rem;
+    .bubble.bot {
+      align-self: flex-start;
     }
 
-    .boton-cta {
-      background-color: var(--color-secundario);
-      color: white;
+    .bubble.user {
+      align-self: flex-end;
+      background: var(--bubble-user);
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 2rem;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 1;
+    }
+
+    .input-container input {
+      flex: 1;
       border: none;
-      padding: 0.8rem 1.2rem;
-      border-radius: 1rem;
-      font-weight: bold;
+      outline: none;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      background: transparent;
+    }
+
+    .input-container button {
+      background: none;
+      border: none;
       cursor: pointer;
-      margin-top: 0.5rem;
+      margin-left: 0.5rem;
+    }
+
+    .input-container button img {
+      width: 24px;
     }
 
     footer {
@@ -86,38 +126,45 @@
       font-size: 0.85rem;
       text-align: center;
       color: #555;
+      z-index: 1;
     }
   </style>
 </head>
 
 <body>
 
+  <!-- ✅ Encabezado con llamita ClanAI -->
   <header>
-    <h1>ClanAI</h1>
+    <img src="llamita.png" alt="Llamita ClanAI">
+    <h1>ClanAI te abraza y te da la bienvenida</h1>
   </header>
 
-  <!-- ✅ Introducción -->
+  <!-- ✅ Mensajes iniciales -->
   <div class="bubble bot">
-    Este no es solo un sitio web. Es un espacio vivo, creado con cuidado y propósito para acompañarte a descubrir, expandir y transformar lo que ya habita en ti.
-  </div>
-  <div class="bubble bot">
-    Por eso ClanAI combina coaching transformacional, PNL, neurociencia emocional y herramientas de IA para guiarte, paso a paso, hacia lo que hoy sueñas ser.
-  </div>
-  <div class="bubble bot">
-    Empecemos... ¿Cómo quieres que te llame?
+    Voy a hablarte como lo haría tu coach:<br>
+    Desde un lugar profundo, amable y respetuoso…<br>
+    Con una mirada que no viene a corregirte,<br>
+    sino a recordarte la fuerza que ya habita en ti.
   </div>
 
-  <!-- ✅ Contenedor de inputs (SIEMPRE VISIBLE) -->
+  <div class="bubble bot">
+    Aquí no encontrarás respuestas prefabricadas,<br>
+    sino un espacio seguro para escucharte,<br>
+    sin prisas, sin máscaras… contigo, de verdad.
+  </div>
+
+  <div class="bubble bot">
+    Para iniciar este viaje juntos,<br>
+    ¿cómo quieres que te llame?
+  </div>
+
+  <!-- ✅ Campos de entrada -->
   <div class="input-container">
-    <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Tu nombre aquí..." required>
-    <input type="email" id="emailUsuario" name="emailUsuario" placeholder="Tu correo aquí..." style="display:none;" required>
-    <select id="nivelSeleccionado" name="nivelSeleccionado" style="display:none;">
-      <option value="">Selecciona tu nivel</option>
-      <option value="Explorador">🧡 Explorador</option>
-      <option value="Visionario">👁 Visionario</option>
-      <option value="Inmersivo">🧠 Inmersivo</option>
-    </select>
-    <button class="boton-cta" id="botonEnviar">Enviar</button>
+    <input type="text" id="nombreUsuario" placeholder="Tu nombre aquí..." />
+    <input type="text" id="emailUsuario" placeholder="Tu correo aquí..." style="display:none;" />
+    <button id="botonEnviar">
+      <img src="llamita.png" alt="Enviar">
+    </button>
   </div>
 
   <footer>
@@ -129,70 +176,68 @@
 
     const nombreInput = document.getElementById("nombreUsuario");
     const correoInput = document.getElementById("emailUsuario");
-    const nivelSelect = document.getElementById("nivelSeleccionado");
     const botonEnviar = document.getElementById("botonEnviar");
 
+    nombreInput.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") manejarFlujo();
+    });
+
+    correoInput.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") manejarFlujo();
+    });
+
     botonEnviar.addEventListener("click", manejarFlujo);
-    nombreInput.addEventListener("keypress", e => { if(e.key === "Enter") manejarFlujo(); });
-    correoInput.addEventListener("keypress", e => { if(e.key === "Enter") manejarFlujo(); });
-    nivelSelect.addEventListener("keypress", e => { if(e.key === "Enter") manejarFlujo(); });
+
+    function validarCorreo(email) {
+      // ✅ Validación básica estructura correo
+      const re = /\S+@\S+\.\S+/;
+      return re.test(email);
+    }
 
     function manejarFlujo() {
       if (paso === 1) {
         const nombre = nombreInput.value.trim();
         if (nombre === "") return;
 
-        crearBurbuja(nombre, "user");
+        const burbujaUser = document.createElement('div');
+        burbujaUser.className = 'bubble user';
+        burbujaUser.textContent = nombre;
+        document.body.insertBefore(burbujaUser, document.querySelector('.input-container'));
 
         setTimeout(() => {
-          crearBurbuja("✨ Y para enviarte encuentros especiales, ¿podrías dejarme tu correo? Prometo cuidarlo bien. 💌", "bot");
-          nombreInput.style.display = "none";
-          correoInput.style.display = "block";
-          correoInput.focus();
-          paso = 2;
-        }, 800);
+          const burbujaBot = document.createElement('div');
+          burbujaBot.className = 'bubble bot';
+          burbujaBot.innerHTML = "✨ Y para poder enviarte este y otros encuentros especiales,<br>¿podrías dejarme tu correo?<br>Prometo cuidarlo bien, como cuido este espacio contigo.";
+          document.body.insertBefore(burbujaBot, document.querySelector('.input-container'));
+        }, 1200);
+
+        nombreInput.style.display = "none";
+        correoInput.style.display = "block";
+        correoInput.focus();
+        paso = 2;
 
       } else if (paso === 2) {
         const correo = correoInput.value.trim();
+        if (correo === "") return;
         if (!validarCorreo(correo)) {
-          alert("Por favor, escribe un correo válido.");
+          alert("Por favor, ingresa un correo válido.");
           return;
         }
 
-        crearBurbuja(correo, "user");
+        const burbujaUser = document.createElement('div');
+        burbujaUser.className = 'bubble user';
+        burbujaUser.textContent = correo;
+        document.body.insertBefore(burbujaUser, document.querySelector('.input-container'));
 
-        setTimeout(() => {
-          crearBurbuja("¡Genial! Para terminar, elige tu nivel: 🧡 Explorador, 👁 Visionario o 🧠 Inmersivo.", "bot");
-          correoInput.style.display = "none";
-          nivelSelect.style.display = "block";
-          nivelSelect.focus();
-          paso = 3;
-        }, 800);
+        const burbujaBot = document.createElement('div');
+        burbujaBot.className = 'bubble bot';
+        burbujaBot.innerHTML = "¡Gracias por confiar! Este espacio es tuyo. 🌱";
+        document.body.insertBefore(burbujaBot, document.querySelector('.input-container'));
 
-      } else if (paso === 3) {
-        const nivel = nivelSelect.value;
-        if (!nivel) {
-          alert("Selecciona un nivel, por favor.");
-          return;
-        }
-
-        crearBurbuja(nivel, "user");
-
-        setTimeout(() => {
-          crearBurbuja(`🚀 ¡Gracias por unirte, ${nombreInput.value}! Te acompañaremos en este viaje.`, "bot");
-        }, 800);
+        // ✅ NO ocultamos la barra, solo limpiamos
+        correoInput.value = "";
+        correoInput.blur();
       }
-    }
-
-    function crearBurbuja(texto, tipo) {
-      const burbuja = document.createElement('div');
-      burbuja.className = `bubble ${tipo}`;
-      burbuja.textContent = texto;
-      document.body.insertBefore(burbuja, document.querySelector('.input-container'));
-    }
-
-    function validarCorreo(email) {
-      return /\S+@\S+\.\S+/.test(email);
     }
   </script>
 
