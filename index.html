@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ClanAI - Tu espacio</title>
 
-  <!-- Fuente Chillax cbustamante-->
+  <!-- ✅ Fuentes ClanAI -->
   <link href="https://api.fontshare.com/v2/css?f[]=chillax@400,600&display=swap" rel="stylesheet">
-  <!-- Fuente Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
+    /* 🌿 VARIABLES ClanAI */
     :root {
-      --fondo-principal: #FDFCF9;
-      --color-primario: #C8945B;
-      --color-secundario: #86C1AF;
+      --fondo-principal: #FDFCF9; /* Fondo suave */
+      --color-primario: #C8945B;  /* Caramelo */
+      --color-secundario: #86C1AF; /* Verde suave */
       --color-texto: #4B3D2A;
-      --bubble-bot: #FFFFFF;
-      --bubble-user: #E3CEC0;
+      --bubble-bot: #FFFFFF; /* Fondo burbuja coach */
+      --bubble-user: #FFFFFFDD; /* Fondo burbuja coachee */
     }
 
     body {
@@ -33,6 +33,7 @@
       position: relative;
     }
 
+    /* ✅ Marca de agua */
     body::before {
       content: "";
       background: url('ClanAI-logo.png') center center no-repeat;
@@ -47,6 +48,7 @@
       z-index: 0;
     }
 
+    /* ✅ Encabezado con llamita y título */
     header {
       display: flex;
       align-items: center;
@@ -66,10 +68,11 @@
       margin: 0;
     }
 
+    /* ✅ Burbuja base */
     .bubble {
       max-width: 500px;
       background: var(--bubble-bot);
-      border: 2px solid var(--color-secundario);
+      border: 1px solid var(--color-secundario);
       border-radius: 1.5rem;
       padding: 1rem 1.5rem;
       margin: 0.5rem 0;
@@ -78,15 +81,18 @@
       z-index: 1;
     }
 
+    /* ✅ Burbuja coach (izquierda) */
     .bubble.bot {
       align-self: flex-start;
     }
 
+    /* ✅ Burbuja coachee (derecha) */
     .bubble.user {
       align-self: flex-end;
       background: var(--bubble-user);
     }
 
+    /* ✅ Barra de entrada */
     .input-container {
       display: flex;
       align-items: center;
@@ -127,13 +133,14 @@
 </head>
 
 <body>
-  <!-- ✅ HEADER -->
+
+  <!-- ✅ Encabezado llamita ClanAI -->
   <header>
     <img src="llamita.png" alt="Llamita ClanAI">
     <h1>ClanAI te abraza y te da la bienvenida</h1>
   </header>
 
-  <!-- ✅ Burbuja bienvenida -->
+  <!-- ✅ Bienvenida coach -->
   <div class="bubble bot">
     Voy a hablarte como lo haría tu coach:<br>
     Desde un lugar profundo, amable y respetuoso…<br>
@@ -147,16 +154,18 @@
     sin prisas, sin máscaras… contigo, de verdad.
   </div>
 
-  <div class="bubble bot" id="pregunta-dinamica">
+  <div class="bubble bot">
     Para iniciar este viaje juntos,<br>
     ¿cómo quieres que te llame?
   </div>
 
-  <!-- ✅ Inputs controlados -->
+  <!-- ✅ Campo de nombre -->
   <div class="input-container">
-    <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Escribe tu nombre aquí..." />
-    <input type="email" id="emailUsuario" name="emailUsuario" placeholder="Tu correo aquí..." style="display: none;" />
-    <button onclick="manejarFlujo()">🔥</button>
+    <input type="text" id="nombreUsuario" placeholder="Tu nombre aquí..." />
+    <input type="text" id="emailUsuario" placeholder="Tu correo aquí..." style="display:none;" />
+    <button onclick="manejarFlujo()">
+      <img src="llamita.png" alt="Enviar" width="20">
+    </button>
   </div>
 
   <footer>
@@ -166,9 +175,21 @@
   <script>
     let paso = 1;
 
+    const nombreInput = document.getElementById("nombreUsuario");
+    const correoInput = document.getElementById("emailUsuario");
+
+    // ✅ Soporte Enter
+    nombreInput.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") manejarFlujo();
+    });
+
+    correoInput.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") manejarFlujo();
+    });
+
     function manejarFlujo() {
       if (paso === 1) {
-        const nombre = document.getElementById("nombreUsuario").value.trim();
+        const nombre = nombreInput.value.trim();
         if (nombre === "") return;
 
         const burbujaUser = document.createElement('div');
@@ -176,26 +197,34 @@
         burbujaUser.textContent = nombre;
         document.body.insertBefore(burbujaUser, document.querySelector('.input-container'));
 
-        document.getElementById("pregunta-dinamica").innerHTML =
-          "✨ Y para poder enviarte este y otros encuentros especiales,<br>¿podrías dejarme tu correo?<br>Prometo cuidarlo bien, como cuido este espacio contigo.";
+        // ✅ ClanAI responde
+        const burbujaBot = document.createElement('div');
+        burbujaBot.className = 'bubble bot';
+        burbujaBot.innerHTML = "✨ Y para poder enviarte este y otros encuentros especiales,<br>¿podrías dejarme tu correo?<br>Prometo cuidarlo bien, como cuido este espacio contigo.";
+        document.body.insertBefore(burbujaBot, document.querySelector('.input-container'));
 
-        document.getElementById("nombreUsuario").style.display = "none";
-        document.getElementById("emailUsuario").style.display = "block";
+        nombreInput.style.display = "none";
+        correoInput.style.display = "block";
         paso = 2;
 
       } else if (paso === 2) {
-        const correo = document.getElementById("emailUsuario").value.trim();
+        const correo = correoInput.value.trim();
         if (correo === "") return;
 
         const burbujaUser = document.createElement('div');
         burbujaUser.className = 'bubble user';
         burbujaUser.textContent = correo;
-        document.body.insertBefore(burbujaUser, document.querySelector('.input-container'));
+        document.body.insertBefore(burbujaUser, document.querySelector('.input-container"));
 
-        document.getElementById("pregunta-dinamica").innerHTML = "¡Gracias por confiar! Este espacio es tuyo. 🌱";
+        const burbujaBot = document.createElement('div');
+        burbujaBot.className = 'bubble bot';
+        burbujaBot.innerHTML = "¡Gracias por confiar! Este espacio es tuyo. 🌱";
+        document.body.insertBefore(burbujaBot, document.querySelector('.input-container"));
+
         document.querySelector('.input-container').style.display = "none";
       }
     }
   </script>
+
 </body>
 </html>
