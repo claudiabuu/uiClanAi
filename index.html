@@ -200,12 +200,19 @@
         burbujaBot.innerHTML = "✨ Y para poder enviarte este y otros encuentros especiales,<br>¿podrías dejarme tu correo?<br>Prometo cuidarlo bien, como cuido este espacio contigo.";
         document.body.insertBefore(burbujaBot, document.querySelector('.input-container'));
 
-        nombreInput.style.display = "none";
-        correoInput.style.display = "block";
-        correoInput.focus();
-        paso = 2;
+       // 🕒 Pausa antes de responder
+  setTimeout(() => {
+    const burbujaBot = document.createElement('div');
+    burbujaBot.className = 'bubble bot';
+    burbujaBot.innerHTML = "✨ Y para poder enviarte este y otros encuentros especiales,<br>¿podrías dejarme tu correo?<br>Prometo cuidarlo bien, como cuido este espacio contigo.";
+    document.body.insertBefore(burbujaBot, document.querySelector('.input-container'));
 
-      } else if (paso === 2) {
+    nombreInput.style.display = "none";
+    correoInput.style.display = "block";
+    correoInput.focus();
+    paso = 2;
+  }, 1500); // 1500 ms = 1.5 segundos
+} else if (paso === 2) {
         const correo = correoInput.value.trim();
         if (correo === "") return;
 
