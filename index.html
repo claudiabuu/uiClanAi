@@ -187,20 +187,17 @@
 
     function manejarFlujo() {
       if (paso === 1) {
-        const nombre = nombreInput.value.trim();
-        if (nombre === "") return;
+  const nombre = nombreInput.value.trim();
+  if (nombre === "") return;
 
-        const burbujaUser = document.createElement('div');
-        burbujaUser.className = 'bubble user';
-        burbujaUser.textContent = nombre;
-        document.body.insertBefore(burbujaUser, document.querySelector('.input-container'));
+  const burbujaUser = document.createElement('div');
+  burbujaUser.className = 'bubble user';
+  burbujaUser.textContent = nombre;
+  document.body.insertBefore(burbujaUser, document.querySelector('.input-container'));
 
-        const burbujaBot = document.createElement('div');
-        burbujaBot.className = 'bubble bot';
-        burbujaBot.innerHTML = "✨ Y para poder enviarte este y otros encuentros especiales,<br>¿podrías dejarme tu correo?<br>Prometo cuidarlo bien, como cuido este espacio contigo.";
-        document.body.insertBefore(burbujaBot, document.querySelector('.input-container'));
+  // ✅ Mueve el cambio de paso aquí
+  paso = 2;
 
-       // 🕒 Pausa antes de responder
   setTimeout(() => {
     const burbujaBot = document.createElement('div');
     burbujaBot.className = 'bubble bot';
@@ -210,9 +207,8 @@
     nombreInput.style.display = "none";
     correoInput.style.display = "block";
     correoInput.focus();
-    paso = 2;
-  }, 1500); // 1500 ms = 1.5 segundos
-} 
+  }, 1500);
+}
       else if (paso === 2) {
         const correo = correoInput.value.trim();
         if (correo === "") return;
